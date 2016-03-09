@@ -16,11 +16,11 @@ void HandleMouseMove(const SDL_MouseMotionEvent& e, float& rotateXAxis, float& r
 {
 	if (e.state & SDL_BUTTON_LMASK)
 	{
-		rotateXAxis += (float)e.yrel * 0.5f;
-		rotateYAxis += (float)e.xrel * 0.5f;
+		rotateXAxis += (float)e.yrel * 0.05f;
+		rotateYAxis += (float)e.xrel * 0.05f;
 
-		rotateXAxis = glm::min(80.f, rotateXAxis);
-		rotateXAxis = glm::max(-80.f, rotateXAxis);
+		rotateXAxis = glm::max(80.f, rotateXAxis);
+		rotateYAxis = glm::min(-80.f, rotateYAxis);
 	}
 }
 
@@ -63,7 +63,7 @@ void DrawFrame(GLSLProgram& program, Mesh& mesh, const glm::vec3& pos, const glm
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 
-	glm::mat4 projection = glm::perspective(60.f, 16.f/9.f, 0.1f, 500.f);
+	glm::mat4 projection = glm::perspective(90.f, 16.f/9.f, 0.1f, 500.f);
 	glm::mat4 modelview = glm::lookAt(pos + fwd, glm::vec3(0.f), glm::vec3(0.f, 1.f, 0.f));
 
 	glUseProgram(program.getId());
