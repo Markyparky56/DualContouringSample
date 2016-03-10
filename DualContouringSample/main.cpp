@@ -72,7 +72,7 @@ void DrawFrame(GLSLProgram& program, Mesh& mesh, const glm::vec3& pos, const glm
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	glBindVertexArray(mesh.vertexArrayObj_);
-	glDrawElements(GL_TRIANGLES, mesh.numIndices_, GL_UNSIGNED_INT, (void*)0);
+	glDrawElements(GL_TRIANGLES, static_cast<int>(mesh.numIndices_), GL_UNSIGNED_INT, (void*)0);
 
 	if (drawWireframe)
 	{
@@ -82,7 +82,7 @@ void DrawFrame(GLSLProgram& program, Mesh& mesh, const glm::vec3& pos, const glm
 		program.setUniformInt("useUniformColour", 1);
 		program.setUniform("colour", glm::vec4(1));
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		glDrawElements(GL_TRIANGLES, mesh.numIndices_, GL_UNSIGNED_INT, (void*)0);
+		glDrawElements(GL_TRIANGLES, static_cast<int>(mesh.numIndices_), GL_UNSIGNED_INT, (void*)0);
 	}
 
 	glUseProgram(0);

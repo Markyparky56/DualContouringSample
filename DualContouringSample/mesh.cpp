@@ -39,9 +39,9 @@ void Mesh::uploadData(const VertexBuffer& vertices, const IndexBuffer& indices)
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer_);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * indices.size(), &indices[0], GL_STATIC_DRAW);
-	numIndices_ = static_cast<int>(indices.size());
+	numIndices_ = indices.size();
 
-	printf("Mesh: %d vertices %d triangles\n", static_cast<int>(vertices.size()), static_cast<int>(indices.size()) / 3);
+	printf("Mesh: %d vertices %d triangles\n", static_cast<int>(vertices.size()), static_cast<int>(numIndices_) / 3);
 
 	glBindVertexArray(0);
 }

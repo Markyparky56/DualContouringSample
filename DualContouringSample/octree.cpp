@@ -166,6 +166,7 @@ OctreeNode* SimplifyOctree(OctreeNode* node, float threshold)
 
 	// change the node from an internal node to a 'psuedo leaf' node
 	OctreeDrawInfo* drawInfo = new OctreeDrawInfo;
+	drawInfo->averageNormal = vec3(0.f);
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -178,12 +179,7 @@ OctreeNode* SimplifyOctree(OctreeNode* node, float threshold)
 		{
 			drawInfo->corners |= (signs[i] << i);
 		}
-	}
-
-	drawInfo->averageNormal = vec3(0.f);
-	for (int i = 0; i < 8; i++)
-	{
-		if (node->children[i])
+        if (node->children[i])
 		{
 			OctreeNode* child = node->children[i];
 			if (child->type == Node_Psuedo || 

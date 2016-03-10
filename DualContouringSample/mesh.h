@@ -42,7 +42,7 @@ public:
 	void destroy();
 
 	GLuint			vertexArrayObj_, vertexBuffer_, indexBuffer_;
-	int				numIndices_;
+	size_t				numIndices_;
 };
 
 // ----------------------------------------------------------------------------
